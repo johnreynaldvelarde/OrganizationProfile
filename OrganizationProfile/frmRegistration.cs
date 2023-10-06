@@ -47,14 +47,7 @@ namespace OrganizationProfile
             return _FullName;
         }
 
-        public int Age(string age) 
-        { 
-            if (Regex.IsMatch(age, @"^[0-9]{1,3}$")) 
-            { 
-                _Age = Int32.Parse(age); 
-            } 
-            return _Age; 
-        }
+       
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
@@ -65,10 +58,9 @@ namespace OrganizationProfile
             }
             else
             {
-                _FullName = txtLastName.Text + txtFirstName.Text + txtMiddleInitial.Text;
                 frmConfirmation frm = new frmConfirmation();
+                StudentInformationClass.SetFullName = FullName(txtLastName.Text, txtFirstName.Text, txtMiddleInitial.Text);
                 frm.Show();
-
             }
         }
 

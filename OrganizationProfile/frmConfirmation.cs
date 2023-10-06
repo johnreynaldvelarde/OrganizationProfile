@@ -21,7 +21,7 @@ namespace OrganizationProfile
 
         private void frmConfirmation_Load(object sender, EventArgs e)
         {
-
+            lblName.Text = StudentInformationClass.SetFullName;
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
