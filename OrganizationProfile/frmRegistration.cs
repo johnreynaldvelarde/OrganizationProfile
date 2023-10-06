@@ -65,7 +65,10 @@ namespace OrganizationProfile
             }
             else
             {
-                
+                _FullName = txtLastName.Text + txtFirstName.Text + txtMiddleInitial.Text;
+                frmConfirmation frm = new frmConfirmation();
+                frm.Show();
+
             }
         }
 
