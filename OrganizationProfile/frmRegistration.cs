@@ -26,7 +26,7 @@ namespace OrganizationProfile
         public string StudentNumber(string studNum) 
         { 
             _StudentNo = studNum; 
-            return _StudentNo;  
+            return _StudentNo;      
         }
 
         public long ContactNo(string Contact) 
@@ -58,7 +58,15 @@ namespace OrganizationProfile
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-
+            if (String.IsNullOrEmpty(txtStudentNo.Text) || String.IsNullOrEmpty(txtLastName.Text) || String.IsNullOrEmpty(txtFirstName.Text) 
+                || String.IsNullOrEmpty(txtMiddleInitial.Text) || String.IsNullOrEmpty(txtAge.Text) || String.IsNullOrEmpty(txtContactNo.Text))
+            {
+                MessageBox.Show("Fill in the blank!!!");
+            }
+            else
+            {
+                
+            }
         }
 
 
