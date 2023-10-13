@@ -49,7 +49,7 @@ namespace OrganizationProfile
             }
             finally
             {
-                Console.WriteLine("Input 11 index or ");    
+                Console.WriteLine("Input 11 number only");    
             }
 
             return _ContactNo;
@@ -112,8 +112,8 @@ namespace OrganizationProfile
             
             StudentInformationClass.SetFullName = FullName(txtLastName.Text, txtFirstName.Text, txtMiddleInitial.Text);
             StudentInformationClass.SetStudentNo = StudentNumber(txtStudentNo.Text);
-            StudentInformationClass.SetProgram = cbPrograms.SelectedItem.ToString();
-            StudentInformationClass.SetGender = cbGender.SelectedItem.ToString();
+            StudentInformationClass.SetProgram = cbPrograms.Text;
+            StudentInformationClass.SetGender = cbGender.Text;
             StudentInformationClass.SetContactNo = ContactNo(txtContactNo.Text);
             StudentInformationClass.SetAge = Age(txtAge.Text);
             StudentInformationClass.SetBirthDay = datePickerBirtday.Value.ToString("yyyy-MM-dd");
