@@ -23,9 +23,10 @@ namespace OrganizationProfile
             InitializeComponent();
         }
 
-        public long StudentNumber(long studNum) 
-        { 
-            _StudentNo = studNum; 
+        public long StudentNumber(string studNum)
+        {
+            
+            _StudentNo = long.Parse(studNum); 
             return _StudentNo;      
         }
 
@@ -110,12 +111,13 @@ namespace OrganizationProfile
         {
             
             StudentInformationClass.SetFullName = FullName(txtLastName.Text, txtFirstName.Text, txtMiddleInitial.Text);
-            StudentInformationClass.SetStudentNo = StudentNumber(Convert.ToInt64(txtStudentNo);
+            StudentInformationClass.SetStudentNo = StudentNumber(txtStudentNo.Text);
             StudentInformationClass.SetProgram = cbPrograms.SelectedItem.ToString();
             StudentInformationClass.SetGender = cbGender.SelectedItem.ToString();
-            StudentInformationClass.SetContactNo = (int)ContactNo(txtContactNo.Text);
+            StudentInformationClass.SetContactNo = ContactNo(txtContactNo.Text);
             StudentInformationClass.SetAge = Age(txtAge.Text);
             StudentInformationClass.SetBirthDay = datePickerBirtday.Value.ToString("yyyy-MM-dd");
+            
             frmConfirmation frm = new frmConfirmation();
             frm.Show();
             /*
