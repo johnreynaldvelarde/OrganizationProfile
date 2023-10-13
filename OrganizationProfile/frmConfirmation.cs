@@ -17,6 +17,7 @@ namespace OrganizationProfile
         public frmConfirmation()
         {
             InitializeComponent();
+            
         }
 
         private void frmConfirmation_Load(object sender, EventArgs e)
@@ -24,8 +25,8 @@ namespace OrganizationProfile
             lblStudentNo.Text = StudentInformationClass.SetStudentNo.ToString();
             lblName.Text = StudentInformationClass.SetFullName;
             lblProgram.Text = StudentInformationClass.SetProgram;
-            //lblAge.Text = StudentInformationClass.Set
-            lblBirthday.Text = StudentInformationClass.SetBirthday;
+            lblAge.Text = StudentInformationClass.SetAge.ToString();
+            lblBirthday.Text = StudentInformationClass.SetBirthDay;
             lblGender.Text = StudentInformationClass.SetGender;
             lblContactNo.Text = StudentInformationClass.SetContactNo.ToString();
         }

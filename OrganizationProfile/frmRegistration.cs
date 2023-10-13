@@ -16,26 +16,43 @@ namespace OrganizationProfile
         private string _FullName;
         private int _Age;
         private long _ContactNo;
-        private string _StudentNo;
+        private long _StudentNo;
 
         public frmRegistration()
         {
             InitializeComponent();
         }
 
-        public string StudentNumber(string studNum) 
+        public long StudentNumber(long studNum) 
         { 
             _StudentNo = studNum; 
             return _StudentNo;      
         }
 
         public long ContactNo(string Contact) 
-        { 
-            if (Regex.IsMatch(Contact, @"^[0-9]{10,11}$")) 
-            { 
-                _ContactNo = long.Parse(Contact);
-            } 
-            return _ContactNo; 
+        {
+            try
+            {
+                if (Regex.IsMatch(Contact, @"^[0-9]{10,11}$"))
+                {
+                    _ContactNo = long.Parse(Contact);
+                }
+                else
+                {
+                    throw new IndexOutOfRangeException("Index out of range");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.Write(e);
+            }
+            finally
+            {
+                Console.WriteLine("Input 11 index or ");    
+            }
+
+            return _ContactNo;
+            
         }
 
         public string FullName(string LastName, string FirstName, string MiddleInitial)
@@ -47,7 +64,16 @@ namespace OrganizationProfile
             return _FullName;
         }
 
-       
+        public int Age(string age)
+        {
+            if (Regex.IsMatch(age, @"^[0-9]{1,3}$"))
+            {
+                _Age = Int32.Parse(age);
+            }
+
+            return _Age;
+        }
+
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
@@ -60,11 +86,12 @@ namespace OrganizationProfile
             {
                 frmConfirmation frm = new frmConfirmation();
                 StudentInformationClass.SetFullName = FullName(txtLastName.Text, txtFirstName.Text, txtMiddleInitial.Text);
-                StudentInformationClass.SetStudentNo = Convert.ToInt32(StudentNumber(txtStudentNo.Text));
+                StudentInformationClass.SetStudentNo = StudentNumber(Convert.ToInt64(txtStudentNo.Text));
                 StudentInformationClass.SetProgram = cbPrograms.SelectedItem.ToString();
-                StudentInformationClass.SetBirthday = datePickerBirtday.Text;
                 StudentInformationClass.SetGender = cbGender.SelectedItem.ToString();
-                StudentInformationClass.SetContactNo = Convert.ToInt64(ContactNo(txtContactNo.Text));
+                StudentInformationClass.SetContactNo = (int)ContactNo(txtContactNo.Text);
+                StudentInformationClass.SetAge = Age(txtAge.Text);
+                StudentInformationClass.SetBirthDay = datePickerBirtday.Value.ToString("yyyy-MM-dd");
                 frm.Show(); 
             }
         }
