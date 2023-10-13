@@ -57,26 +57,68 @@ namespace OrganizationProfile
 
         public string FullName(string LastName, string FirstName, string MiddleInitial)
         {
-            if (Regex.IsMatch(LastName, @"^[a-zA-Z]+$") || Regex.IsMatch(FirstName, @"^[a-zA-Z]+$") || Regex.IsMatch(MiddleInitial, @"^[a-zA-Z]+$")) 
-            { 
-                _FullName = LastName + ", " + FirstName + ", " + MiddleInitial; 
+            try
+            {
+                if (Regex.IsMatch(LastName, @"^[a-zA-Z]+$") || Regex.IsMatch(FirstName, @"^[a-zA-Z]+$") || Regex.IsMatch(MiddleInitial, @"^[a-zA-Z]+$"))
+                {
+                    _FullName = LastName + ", " + FirstName + ", " + MiddleInitial;
+                }
+                else
+                {
+                    throw new ArgumentNullException("Last Name, First Name and Middle Initial Textbox empty");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.Write(e);
+            }
+            finally
+            {
+                Console.WriteLine("Last Name, First Name and Middle Initial is empty");
             }
             return _FullName;
+
         }
 
         public int Age(string age)
         {
-            if (Regex.IsMatch(age, @"^[0-9]{1,3}$"))
+            try
             {
-                _Age = Int32.Parse(age);
+                if (Regex.IsMatch(age, @"^[0-9]{1,3}$"))
+                {
+                    _Age = Int32.Parse(age);
+                }
+                else
+                {
+                    throw new OverflowException("Invalid Input of Age");
+                }
             }
-
+            catch (Exception e)
+            {
+                Console.Write(e);
+            }
+            finally
+            {
+                Console.WriteLine("Enter number only");
+            }
+            
             return _Age;
         }
 
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
+            
+            StudentInformationClass.SetFullName = FullName(txtLastName.Text, txtFirstName.Text, txtMiddleInitial.Text);
+            StudentInformationClass.SetStudentNo = StudentNumber(Convert.ToInt64(txtStudentNo);
+            StudentInformationClass.SetProgram = cbPrograms.SelectedItem.ToString();
+            StudentInformationClass.SetGender = cbGender.SelectedItem.ToString();
+            StudentInformationClass.SetContactNo = (int)ContactNo(txtContactNo.Text);
+            StudentInformationClass.SetAge = Age(txtAge.Text);
+            StudentInformationClass.SetBirthDay = datePickerBirtday.Value.ToString("yyyy-MM-dd");
+            frmConfirmation frm = new frmConfirmation();
+            frm.Show();
+            /*
             if (String.IsNullOrEmpty(txtStudentNo.Text) || String.IsNullOrEmpty(txtLastName.Text) || String.IsNullOrEmpty(txtFirstName.Text) 
                 || String.IsNullOrEmpty(txtMiddleInitial.Text) || String.IsNullOrEmpty(txtAge.Text) || String.IsNullOrEmpty(txtContactNo.Text))
             {
@@ -84,16 +126,9 @@ namespace OrganizationProfile
             }
             else
             {
-                frmConfirmation frm = new frmConfirmation();
-                StudentInformationClass.SetFullName = FullName(txtLastName.Text, txtFirstName.Text, txtMiddleInitial.Text);
-                StudentInformationClass.SetStudentNo = StudentNumber(Convert.ToInt64(txtStudentNo.Text));
-                StudentInformationClass.SetProgram = cbPrograms.SelectedItem.ToString();
-                StudentInformationClass.SetGender = cbGender.SelectedItem.ToString();
-                StudentInformationClass.SetContactNo = (int)ContactNo(txtContactNo.Text);
-                StudentInformationClass.SetAge = Age(txtAge.Text);
-                StudentInformationClass.SetBirthDay = datePickerBirtday.Value.ToString("yyyy-MM-dd");
-                frm.Show(); 
+               
             }
+            */
         }
 
 
