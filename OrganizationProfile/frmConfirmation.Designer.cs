@@ -191,7 +191,7 @@
             this.btnSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSubmit.ForeColor = System.Drawing.Color.White;
-            this.btnSubmit.Location = new System.Drawing.Point(132, 426);
+            this.btnSubmit.Location = new System.Drawing.Point(153, 426);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(142, 50);
             this.btnSubmit.TabIndex = 22;
@@ -204,7 +204,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(422, 498);
+            this.ClientSize = new System.Drawing.Size(450, 498);
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.lblContactNo);
             this.Controls.Add(this.label14);

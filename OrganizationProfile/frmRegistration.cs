@@ -60,7 +60,12 @@ namespace OrganizationProfile
             {
                 frmConfirmation frm = new frmConfirmation();
                 StudentInformationClass.SetFullName = FullName(txtLastName.Text, txtFirstName.Text, txtMiddleInitial.Text);
-                frm.Show();
+                StudentInformationClass.SetStudentNo = Convert.ToInt32(StudentNumber(txtStudentNo.Text));
+                StudentInformationClass.SetProgram = cbPrograms.SelectedItem.ToString();
+                StudentInformationClass.SetBirthday = datePickerBirtday.Text;
+                StudentInformationClass.SetGender = cbGender.SelectedItem.ToString();
+                StudentInformationClass.SetContactNo = Convert.ToInt64(ContactNo(txtContactNo.Text));
+                frm.Show(); 
             }
         }
 
