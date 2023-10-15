@@ -56,7 +56,7 @@ namespace OrganizationProfile
         {
             if (Regex.IsMatch(LastName, @"^[a-zA-Z]+$") || Regex.IsMatch(FirstName, @"^[a-zA-Z]+$") || Regex.IsMatch(MiddleInitial, @"^[a-zA-Z]+$"))
             {
-                _FullName = LastName + ", " + FirstName + ", " + MiddleInitial;
+                _FullName = LastName + ", " + FirstName + " " + MiddleInitial;
             }
             else
             {
@@ -125,7 +125,7 @@ namespace OrganizationProfile
                 else
                 {
                     frmConfirmation frm = new frmConfirmation();
-                    frm.Show();
+                    frm.ShowDialog();
                 }
                 
             }
