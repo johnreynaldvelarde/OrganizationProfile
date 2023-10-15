@@ -36,17 +36,20 @@ namespace OrganizationProfile
 
         public long ContactNo(string Contact) 
         {
-                if (Regex.IsMatch(Contact, @"^[0-9]{10,11}$"))
-                {
-                    _ContactNo = long.Parse(Contact);
-                }
-                else
-                {
-                    throw new IndexOutOfRangeException();
-                }
+
+            if (Regex.IsMatch(Contact, @"^[0-9]{10,11}$"))
+            {
+                _ContactNo = long.Parse(Contact);
+                
+            }
+            else
+            {
+                throw new IndexOutOfRangeException();
+            }
 
             return _ContactNo;
-            
+
+
         }
 
         public string FullName(string LastName, string FirstName, string MiddleInitial)
@@ -84,6 +87,7 @@ namespace OrganizationProfile
         {
             try
             {
+
                 StudentInformationClass.SetFullName = FullName(txtLastName.Text, txtFirstName.Text, txtMiddleInitial.Text);
                 StudentInformationClass.SetStudentNo = StudentNumber(txtStudentNo.Text);
                 StudentInformationClass.SetProgram = cbPrograms.Text;
@@ -106,12 +110,24 @@ namespace OrganizationProfile
             }
             catch (IndexOutOfRangeException)
             {
-                MessageBox.Show("Please enter only 12 digits");
+                MessageBox.Show("Please enter a contact number");
             }
             finally
             {
-                frmConfirmation frm = new frmConfirmation();
-                frm.Show();
+                if (cbGender.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Please select a gender");
+                }
+                else if (cbPrograms.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Please select a program");
+                }
+                else
+                {
+                    frmConfirmation frm = new frmConfirmation();
+                    frm.Show();
+                }
+                
             }
           
         }

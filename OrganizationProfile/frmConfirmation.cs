@@ -25,7 +25,7 @@ namespace OrganizationProfile
             lblAge.Text = StudentInformationClass.SetAge.ToString();
             lblBirthday.Text = StudentInformationClass.SetBirthDay;
             lblGender.Text = StudentInformationClass.SetGender;
-            lblContactNo.Text = StudentInformationClass.SetContactNo.ToString();
+            lblContactNo.Text = "+63"+ StudentInformationClass.SetContactNo.ToString();
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
