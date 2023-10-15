@@ -25,32 +25,25 @@ namespace OrganizationProfile
 
         public long StudentNumber(string studNum)
         {
-            
-            _StudentNo = long.Parse(studNum); 
-            return _StudentNo;      
+            if (string.IsNullOrWhiteSpace(studNum))
+            {
+                throw new FormatException();
+            }
+
+            _StudentNo = long.Parse(studNum);
+            return _StudentNo;
         }
 
         public long ContactNo(string Contact) 
         {
-            try
-            {
                 if (Regex.IsMatch(Contact, @"^[0-9]{10,11}$"))
                 {
                     _ContactNo = long.Parse(Contact);
                 }
                 else
                 {
-                    throw new IndexOutOfRangeException("Index out of range");
+                    throw new IndexOutOfRangeException();
                 }
-            }
-            catch (Exception e)
-            {
-                Console.Write(e);
-            }
-            finally
-            {
-                Console.WriteLine("Input 11 number only");    
-            }
 
             return _ContactNo;
             
@@ -58,76 +51,69 @@ namespace OrganizationProfile
 
         public string FullName(string LastName, string FirstName, string MiddleInitial)
         {
-            try
+            if (Regex.IsMatch(LastName, @"^[a-zA-Z]+$") || Regex.IsMatch(FirstName, @"^[a-zA-Z]+$") || Regex.IsMatch(MiddleInitial, @"^[a-zA-Z]+$"))
             {
-                if (Regex.IsMatch(LastName, @"^[a-zA-Z]+$") || Regex.IsMatch(FirstName, @"^[a-zA-Z]+$") || Regex.IsMatch(MiddleInitial, @"^[a-zA-Z]+$"))
-                {
-                    _FullName = LastName + ", " + FirstName + ", " + MiddleInitial;
-                }
-                else
-                {
-                    throw new ArgumentNullException("Last Name, First Name and Middle Initial Textbox empty");
-                }
+                _FullName = LastName + ", " + FirstName + ", " + MiddleInitial;
             }
-            catch (Exception e)
+            else
             {
-                Console.Write(e);
+                throw new ArgumentException();
+                
             }
-            finally
-            {
-                Console.WriteLine("Last Name, First Name and Middle Initial is empty");
-            }
+
             return _FullName;
 
         }
 
         public int Age(string age)
         {
-            try
+            if (Regex.IsMatch(age, @"^[0-9]{1,3}$"))
             {
-                if (Regex.IsMatch(age, @"^[0-9]{1,3}$"))
-                {
-                    _Age = Int32.Parse(age);
-                }
-                else
-                {
-                    throw new OverflowException("Invalid Input of Age");
-                }
+                _Age = Int32.Parse(age);
             }
-            catch (Exception e)
+            else
             {
-                Console.Write(e);
+                throw new OverflowException();
             }
-            finally
-            {
-                Console.WriteLine("Enter number only");
-            }
-            
+
             return _Age;
         }
 
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            
-            StudentInformationClass.SetFullName = FullName(txtLastName.Text, txtFirstName.Text, txtMiddleInitial.Text);
-            StudentInformationClass.SetStudentNo = StudentNumber(txtStudentNo.Text);
-            StudentInformationClass.SetProgram = cbPrograms.Text;
-            StudentInformationClass.SetGender = cbGender.Text;
-            StudentInformationClass.SetContactNo = ContactNo(txtContactNo.Text);
-            StudentInformationClass.SetAge = Age(txtAge.Text);
-            StudentInformationClass.SetBirthDay = datePickerBirtday.Value.ToString("yyyy-MM-dd");
-            
-            frmConfirmation frm = new frmConfirmation();
-            frm.Show();
-            /*
-            if (String.IsNullOrEmpty(txtStudentNo.Text) || String.IsNullOrEmpty(txtLastName.Text) || String.IsNullOrEmpty(txtFirstName.Text) 
-                || String.IsNullOrEmpty(txtMiddleInitial.Text) || String.IsNullOrEmpty(txtAge.Text) || String.IsNullOrEmpty(txtContactNo.Text))
+            try
             {
-                MessageBox.Show("Fill in the blank!!!");
+                StudentInformationClass.SetFullName = FullName(txtLastName.Text, txtFirstName.Text, txtMiddleInitial.Text);
+                StudentInformationClass.SetStudentNo = StudentNumber(txtStudentNo.Text);
+                StudentInformationClass.SetProgram = cbPrograms.Text;
+                StudentInformationClass.SetGender = cbGender.Text;
+                StudentInformationClass.SetContactNo = ContactNo(txtContactNo.Text);
+                StudentInformationClass.SetAge = Age(txtAge.Text);
+                StudentInformationClass.SetBirthDay = datePickerBirtday.Value.ToString("yyyy-MM-dd");
             }
-           
-            */
+            catch (FormatException)
+            {
+                MessageBox.Show("Please enter a student number");
+            }
+             catch (OverflowException)
+            {
+                MessageBox.Show("Please enter a age");
+            }
+            catch (ArgumentException)
+            {
+                MessageBox.Show("Please enter a complete name");
+            }
+            catch (IndexOutOfRangeException)
+            {
+                MessageBox.Show("Please enter only 12 digits");
+            }
+            finally
+            {
+                frmConfirmation frm = new frmConfirmation();
+                frm.Show();
+            }
+          
         }
 
 
